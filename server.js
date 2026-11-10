@@ -14,9 +14,14 @@ app.get('/', (req, res) => {
 
 // create a new GET route at the path /api/fun-fact.
 app.get('/api/fun-fact', async (req, res) => {
-    res.send('Request to API')
-});
+    try {
+        const res = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random')
 
+        const comments = await res.json()
+    } catch(e) {
+        res.send(e);
+    }
+});
 
 
 
