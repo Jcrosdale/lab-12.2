@@ -15,13 +15,17 @@ app.get('/', (req, res) => {
 // create a new GET route at the path /api/fun-fact.
 app.get('/api/fun-fact', async (req, res) => {
     try {
+        // Sends an http request to the external API
         const response = await fetch(url);
+
         if (!response.ok) {
             throw new Error(`External API responded with status ${response.status}`);
         }
 
+        // Extracts the API data
         const funFact = await response.json();
 
+        // Sends the response to the client (transform)
         res.json({ fact: funFact.text });
     } catch (error) {
         res.status(500).json({ error: "Could not fetch the fun fact" })
