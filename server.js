@@ -3,8 +3,11 @@ import express from 'express'
 
 const app = express();
 const port = 3000;
+
+// Store API URL
 const url = 'https://uselessfacts.jsph.pl/api/v2/facts/random';
 
+// Root / home path
 app.get('/', (req, res) => {
     res.send("Home path")
 });
@@ -21,7 +24,7 @@ app.get('/api/fun-fact', async (req, res) => {
 
         res.json({ fact: funFact.text });
     } catch (error) {
-        res.status(500)
+        res.status(500).json({ error: "Could not fetch the fun fact" })
     }
     
 });
