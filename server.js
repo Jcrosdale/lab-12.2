@@ -8,3 +8,15 @@ app.listen(port, () => {
     console.log(`Server is running on https://localhost:${port}`)
 })
 
+app.get('/', (req, res) => {
+    res.send("Home path")
+})
+
+// create a new GET route at the path /api/fun-fact.
+app.get('/api/fun-fact', async (req, res) => {
+    res.send('Request to API')
+});
+
+
+
+
